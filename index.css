@@ -371,3 +371,140 @@ a:hover {
   text-decoration: underline !important;
   text-underline-offset: 4px;
 }
+
+/* ============================
+   📱 Mobile Optimization
+============================ */
+@media (max-width: 900px) {
+
+  /* Header */
+  header {
+    font-size: 2em;
+    padding: 60px 20px 40px;
+  }
+
+  .headline {
+    font-size: 1.1em;
+  }
+
+  .tagline {
+    font-size: 1em;
+  }
+
+  /* Navigation */
+  nav {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 12px 0;
+  }
+
+  nav a {
+    font-size: 0.95em;
+  }
+
+  /* Sections */
+  section {
+    padding: 30px 20px;
+    margin: 40px 10px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  /* Skills Grid */
+  .skills-grid {
+    gap: 10px;
+  }
+
+  .skills-grid span {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+
+  /* Tech Stack Bars */
+  .stack-bars span {
+    width: 180px;
+    font-size: 0.9em;
+  }
+
+  .bar {
+    width: 45%;
+  }
+
+  /* Project Cards */
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-card h3 {
+    font-size: 1.3em;
+  }
+
+  /* Resume iframe */
+  iframe {
+    height: 500px;
+  }
+
+  /* Sidebar → Bottom Bar */
+  #sidebar {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    right: 0;
+    left: 0;
+    transform: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 0;
+    border-top: 1px solid rgba(0,188,212,0.25);
+    background: rgba(20,20,20,0.95);
+  }
+
+  #sidebar a {
+    margin: 0;
+    font-size: 0.85em;
+  }
+
+  /* Scroll to Top Button */
+  #scrollTop {
+    bottom: 80px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  header {
+    font-size: 1.6em;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 0.85em;
+  }
+
+  section {
+    padding: 25px 15px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .skills-grid span {
+    font-size: 0.85em;
+  }
+
+  .project-card h3 {
+    font-size: 1.2em;
+  }
+
+  iframe {
+    height: 400px;
+  }
+}
