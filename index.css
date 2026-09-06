@@ -1,23 +1,23 @@
-/* Travis Baker Portfolio — Refined Professional Styling */
+/* Travis Baker Portfolio — Modern Professional Overhaul */
 
 /* 🌑 Global Layout */
 body {
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #0e0e0e 0%, #1a1a1a 100%);
-  color: #e0e0e0;
+  background-color: #0d0d0d;
+  color: #e6e6e6;
   margin: 0;
   padding: 0;
   line-height: 1.75;
   scroll-behavior: smooth;
 }
 
-/* 🧭 Navigation Bar */
+/* 🧭 Navigation */
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  background-color: rgba(20, 20, 20, 0.9);
+  background-color: rgba(18, 18, 18, 0.95);
   backdrop-filter: blur(8px);
   padding: 18px 0;
   position: sticky;
@@ -27,41 +27,38 @@ nav {
 }
 
 nav a {
-  color: #b0f4ff;
+  color: #b8faff;
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.6px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 nav a:hover {
   color: #00bcd4;
-  transform: scale(1.05);
-  text-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* 🏷️ Header */
 header {
-  position: relative;
   text-align: center;
   padding: 100px 20px 60px;
   font-size: 2.8em;
   font-weight: 700;
-  color: #e0e0e0;
+  color: #f0f0f0;
   letter-spacing: 0.8px;
-  z-index: 1;
   background: linear-gradient(180deg, rgba(20,20,20,0.95) 0%, rgba(25,25,25,0.85) 100%);
   border-bottom: 1px solid rgba(0,188,212,0.15);
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  animation: headerFade 1.2s ease-out forwards;
+  animation: fadeInHeader 1.2s ease-out forwards;
 }
 
-@keyframes headerFade {
+@keyframes fadeInHeader {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🧠 Headline and Tagline */
 .headline {
   font-size: 1.25em;
   color: #80eaff;
@@ -79,7 +76,7 @@ header {
   letter-spacing: 0.6px;
 }
 
-/* 💎 Accent Divider */
+/* 💎 Divider */
 header::after {
   content: "";
   display: block;
@@ -89,12 +86,6 @@ header::after {
   background: linear-gradient(90deg, #00bcd4, #80eaff);
   opacity: 0.6;
   border-radius: 2px;
-  animation: dividerFade 2s ease-in-out forwards;
-}
-
-@keyframes dividerFade {
-  from { opacity: 0; transform: scaleX(0.8); }
-  to { opacity: 0.6; transform: scaleX(1); }
 }
 
 /* 📦 Section Containers */
@@ -107,13 +98,18 @@ section {
   border: 1px solid rgba(0, 188, 212, 0.15);
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(0, 188, 212, 0.1);
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeInSection 0.8s ease forwards;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 30px rgba(0, 188, 212, 0.25);
+}
+
+@keyframes fadeInSection {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
@@ -124,11 +120,6 @@ h2 {
   border-bottom: 1px solid #2a2a2a;
   padding-bottom: 12px;
   letter-spacing: 0.6px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 🧩 Skills Grid */
@@ -145,7 +136,7 @@ h2 {
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 1em;
-  color: #b0f4ff;
+  color: #b8faff;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -206,15 +197,17 @@ h2 {
 }
 
 .project-card a {
-  color: #80eaff;
+  color: #b8faff;
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .project-card a:hover {
   color: #00bcd4;
-  text-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* 📄 Resume Button */
