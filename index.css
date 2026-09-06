@@ -1,4 +1,4 @@
-/* Travis Baker Portfolio — Enhanced Professional Version */
+/* Travis Baker Portfolio — Clean Professional Version */
 
 /* 🌑 Global Layout */
 body {
@@ -12,7 +12,7 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 🌗 Dark/Light Mode */
+/* 🌗 Light Mode */
 body.light {
   background-color: #f5f5f5;
   color: #222;
@@ -33,22 +33,12 @@ body.light h2 {
   color: #007b9e;
 }
 
-body.light .skills-grid span {
-  background: rgba(0,0,0,0.1);
-  color: #007b9e;
-}
-
-body.light .project-card {
-  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
-  border-color: #ccc;
-}
-
 body.light footer {
   background: rgba(255,255,255,0.9);
   color: #444;
 }
 
-/* 🌈 Particle Background */
+/* 🌈 Particle Background (Soft) */
 #particles {
   position: fixed;
   width: 100%;
@@ -57,6 +47,23 @@ body.light footer {
   top: 0;
   left: 0;
   pointer-events: none;
+  opacity: 0.15;
+}
+
+/* 🌗 Mode Toggle */
+#modeToggle {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bcd4;
+  color: #0f0f0f;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  box-shadow: 0 0 12px rgba(0,188,212,0.4);
+  z-index: 999;
 }
 
 /* 🧭 Navigation */
@@ -72,7 +79,6 @@ nav {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(0, 188, 212, 0.25);
-  transition: background 0.4s ease;
 }
 
 nav a {
@@ -100,18 +106,6 @@ header {
   background: linear-gradient(180deg, rgba(20,20,20,0.95) 0%, rgba(25,25,25,0.85) 100%);
   border-bottom: 1px solid rgba(0,188,212,0.15);
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  animation: fadeInHeader 1.2s ease-out forwards, glowPulse 4s infinite ease-in-out;
-}
-
-@keyframes fadeInHeader {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes glowPulse {
-  0% { text-shadow: 0 0 10px #00bcd4; }
-  50% { text-shadow: 0 0 25px #00eaff; }
-  100% { text-shadow: 0 0 10px #00bcd4; }
 }
 
 .headline {
@@ -153,18 +147,12 @@ section {
   border: 1px solid rgba(0, 188, 212, 0.15);
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(0, 188, 212, 0.1);
-  animation: fadeInSection 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 30px rgba(0, 188, 212, 0.25);
-}
-
-@keyframes fadeInSection {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
@@ -200,7 +188,7 @@ h2 {
   transform: scale(1.08);
 }
 
-/* ⚙️ Tech Stack Visualization */
+/* ⚙️ Tech Stack Bars */
 .stack-bars div {
   margin: 12px 0;
 }
@@ -235,7 +223,7 @@ h2 {
   to { width: 100%; }
 }
 
-/* Individual Tech Bars */
+/* Individual Bar Colors */
 .bar.linux::after { background: #00bcd4; }
 .bar.pi::after { background: #4dd0e1; }
 .bar.windows::after { background: #29b6f6; }
@@ -247,7 +235,7 @@ h2 {
 .bar.ai::after { background: #64ffda; }
 .bar.crypto::after { background: #00c853; }
 
-/* 🧱 Project Cards */
+/* 💻 Project Cards */
 .project-card {
   background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%);
   border: 1px solid #2a2a2a;
@@ -255,30 +243,12 @@ h2 {
   padding: 28px;
   margin-bottom: 28px;
   transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
   border-color: #00bcd4;
   box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
-}
-
-.project-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(0,188,212,0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover::before {
-  opacity: 1;
 }
 
 .project-card h3 {
@@ -290,8 +260,7 @@ h2 {
   color: #b8faff;
   text-decoration: none;
   font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .project-card a:hover {
@@ -390,154 +359,3 @@ footer {
   margin-top: 60px;
   background: rgba(20,20,20,0.9);
 }
-
-/* ============================
-   Terminal Intro Panel
-============================ */
-#launchTerminal {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #00bcd4;
-  color: #0f0f0f;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  z-index: 999;
-  font-weight: 600;
-  box-shadow: 0 0 12px rgba(0,188,212,0.4);
-}
-
-#terminalIntro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10,10,10,0.95);
-  color: #00eaff;
-  font-family: monospace;
-  padding: 40px;
-  display: none;
-  z-index: 2000;
-}
-
-#terminalIntro .terminal-content {
-  font-size: 1.2em;
-  line-height: 1.6;
-}
-
-/* ============================
-   Diagnostics Panel
-============================ */
-#diagnosticsPanel {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(20,20,20,0.9);
-  border: 1px solid #00bcd4;
-  padding: 20px;
-  border-radius: 10px;
-  color: #80eaff;
-  font-size: 0.95em;
-  width: 260px;
-  display: none;
-  z-index: 999;
-}
-
-/* ============================
-   Raspberry Pi Easter Egg
-============================ */
-#piEgg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0,188,212,0.2);
-  padding: 20px 30px;
-  border-radius: 12px;
-  font-size: 1.4em;
-  color: #80eaff;
-  display: none;
-  z-index: 1500;
-}
-
-/* ============================
-   Devvit Demo Panel
-============================ */
-#devvitDemo {
-  position: fixed;
-  top: 20%;
-  right: 20px;
-  background: rgba(20,20,20,0.9);
-  border: 1px solid #00e5ff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  display: none;
-  z-index: 999;
-}
-
-.devvit-window {
-  background: #111;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 10px;
-  font-family: monospace;
-  color: #80eaff;
-}
-
-/* ============================
-   Monero Node Pulse
-============================ */
-#moneroPulse {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 22px;
-  height: 22px;
-  background: #00c853;
-  border-radius: 50%;
-  box-shadow: 0 0 20px #00c853;
-  animation: pulse 2s infinite ease-in-out;
-  z-index: 999;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 10px #00c853; }
-  50% { transform: scale(1.4); box-shadow: 0 0 25px #00ff73; }
-  100% { transform: scale(1); box-shadow: 0 0 10px #00c853; }
-}
-
-/* ============================
-   Career Timeline
-============================ */
-#timeline {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 45px;
-  background: rgba(28,28,28,0.85);
-  border-radius: 12px;
-  border: 1px solid rgba(0,188,212,0.15);
-}
-
-.timeline-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.timeline-item {
-  background: rgba(0,188,212,0.15);
-  padding: 15px;
-  border-radius: 8px;
-  color: #80eaff;
-  font-size: 1.1em;
-  animation: slideIn 1s ease forwards;
-  opacity: 0;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-40px); }
-  to
