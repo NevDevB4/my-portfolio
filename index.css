@@ -1,4 +1,4 @@
-/* Travis Baker Portfolio — Modern Professional Overhaul */
+/* Travis Baker Portfolio — Enhanced Professional Version */
 
 /* 🌑 Global Layout */
 body {
@@ -9,6 +9,54 @@ body {
   padding: 0;
   line-height: 1.75;
   scroll-behavior: smooth;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* 🌗 Dark/Light Mode */
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+body.light nav {
+  background-color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+body.light section {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.15);
+  box-shadow: 0 0 25px rgba(0,0,0,0.1);
+}
+
+body.light h2 {
+  color: #007b9e;
+}
+
+body.light .skills-grid span {
+  background: rgba(0,0,0,0.1);
+  color: #007b9e;
+}
+
+body.light .project-card {
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+  border-color: #ccc;
+}
+
+body.light footer {
+  background: rgba(255,255,255,0.9);
+  color: #444;
+}
+
+/* 🌈 Particle Background */
+#particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 /* 🧭 Navigation */
@@ -24,6 +72,7 @@ nav {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(0, 188, 212, 0.25);
+  transition: background 0.4s ease;
 }
 
 nav a {
@@ -51,12 +100,18 @@ header {
   background: linear-gradient(180deg, rgba(20,20,20,0.95) 0%, rgba(25,25,25,0.85) 100%);
   border-bottom: 1px solid rgba(0,188,212,0.15);
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  animation: fadeInHeader 1.2s ease-out forwards;
+  animation: fadeInHeader 1.2s ease-out forwards, glowPulse 4s infinite ease-in-out;
 }
 
 @keyframes fadeInHeader {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 10px #00bcd4; }
+  50% { text-shadow: 0 0 25px #00eaff; }
+  100% { text-shadow: 0 0 10px #00bcd4; }
 }
 
 .headline {
@@ -99,7 +154,7 @@ section {
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(0, 188, 212, 0.1);
   animation: fadeInSection 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
 }
 
 section:hover {
@@ -149,19 +204,23 @@ h2 {
 .stack-bars div {
   margin: 12px 0;
 }
+
 .stack-bars span {
   display: inline-block;
-  width: 160px;
+  width: 260px;
   color: #80eaff;
+  font-weight: 500;
 }
+
 .bar {
   display: inline-block;
   height: 10px;
-  width: 60%;
+  width: 55%;
   background: rgba(0,188,212,0.25);
   border-radius: 5px;
   position: relative;
 }
+
 .bar::after {
   content: "";
   position: absolute;
@@ -170,10 +229,23 @@ h2 {
   background: #00bcd4;
   animation: fillBar 2s ease forwards;
 }
+
 @keyframes fillBar {
   from { width: 0; }
   to { width: 100%; }
 }
+
+/* Individual Tech Bars */
+.bar.linux::after { background: #00bcd4; }
+.bar.pi::after { background: #4dd0e1; }
+.bar.windows::after { background: #29b6f6; }
+.bar.vm::after { background: #26c6da; }
+.bar.js::after { background: #ffd54f; }
+.bar.py::after { background: #ffb74d; }
+.bar.react::after { background: #80deea; }
+.bar.devvit::after { background: #00e5ff; }
+.bar.ai::after { background: #64ffda; }
+.bar.crypto::after { background: #00c853; }
 
 /* 🧱 Project Cards */
 .project-card {
@@ -183,12 +255,30 @@ h2 {
   padding: 28px;
   margin-bottom: 28px;
   transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
   border-color: #00bcd4;
   box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,188,212,0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card h3 {
@@ -210,6 +300,13 @@ h2 {
   text-underline-offset: 4px;
 }
 
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  color: #80eaff;
+  font-style: italic;
+}
+
 /* 📄 Resume Button */
 .resume-btn {
   display: inline-block;
@@ -222,6 +319,7 @@ h2 {
   transition: background 0.3s ease, transform 0.3s ease;
   margin-bottom: 25px;
 }
+
 .resume-btn:hover {
   background: #80eaff;
   transform: scale(1.05);
@@ -232,6 +330,54 @@ iframe {
   border: none;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 188, 212, 0.25);
+}
+
+/* 🧭 Floating Sidebar */
+#sidebar {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20,20,20,0.85);
+  border: 1px solid rgba(0,188,212,0.25);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,188,212,0.2);
+  z-index: 999;
+}
+
+#sidebar a {
+  display: block;
+  margin: 10px 0;
+  color: #80eaff;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.3s ease;
+}
+
+#sidebar a:hover {
+  color: #00bcd4;
+}
+
+/* ⬆ Scroll to Top Button */
+#scrollTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #00bcd4;
+  color: #0f0f0f;
+  padding: 12px 18px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,188,212,0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: none;
+}
+
+#scrollTop:hover {
+  background: #80eaff;
+  transform: scale(1.15);
 }
 
 /* 🦶 Footer */
