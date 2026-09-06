@@ -109,6 +109,17 @@ sidebar.innerHTML = `
 document.body.appendChild(sidebar);
 
 /* ============================
+   Smooth Anchor Scrolling
+============================ */
+document.querySelectorAll("nav a, #sidebar a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute("href"));
+    target.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+/* ============================
    Section Reveal Animation
 ============================ */
 const sections = document.querySelectorAll("section");
@@ -126,12 +137,57 @@ window.addEventListener("scroll", revealSections);
 revealSections();
 
 /* ============================
-   Smooth Anchor Scrolling
+   Terminal Intro (Button Activated)
 ============================ */
-document.querySelectorAll("nav a, #sidebar a").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute("href"));
-    target.scrollIntoView({ behavior: "smooth" });
-  });
+const terminalBtn = document.getElementById("launchTerminal");
+const terminalPanel = document.getElementById("terminalIntro");
+
+terminalBtn.addEventListener("click", () => {
+  terminalPanel.style.display = "block";
+
+  setTimeout(() => {
+    terminalPanel.style.display = "none";
+    diagnosticsPanel.style.display = "block";
+  }, 6000);
+});
+
+/* ============================
+   Diagnostics Panel
+============================ */
+const diagnosticsPanel = document.getElementById("diagnosticsPanel");
+
+/* ============================
+   Raspberry Pi Easter Egg
+============================ */
+const piEgg = document.getElementById("piEgg");
+
+setTimeout(() => {
+  piEgg.style.display = "block";
+  setTimeout(() => piEgg.style.display = "none", 3000);
+}, 4000);
+
+/* ============================
+   Devvit Demo Panel
+============================ */
+const devvitDemo = document.getElementById("devvitDemo");
+
+setTimeout(() => {
+  devvitDemo.style.display = "block";
+  setTimeout(() => devvitDemo.style.display = "none", 6000);
+}, 8000);
+
+/* ============================
+   Monero Node Pulse
+============================ */
+const moneroPulse = document.getElementById("moneroPulse");
+
+/* ============================
+   Career Timeline Animation
+============================ */
+const timelineItems = document.querySelectorAll(".timeline-item");
+
+timelineItems.forEach((item, index) => {
+  setTimeout(() => {
+    item.style.opacity = "1";
+  }, index * 600);
 });
