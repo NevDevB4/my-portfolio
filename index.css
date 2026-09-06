@@ -1,517 +1,111 @@
-/* Travis Baker Portfolio — Clean Professional Version */
+/* ============================
+   🎨 Unified Color Scheme
+============================ */
 
-/* 🌑 Global Layout */
+/* Global Text */
 body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
   background-color: #0d0d0d;
   color: #e6e6e6;
-  margin: 0;
-  padding: 0;
-  line-height: 1.75;
-  scroll-behavior: smooth;
-  transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* 🌗 Light Mode */
 body.light {
   background-color: #f5f5f5;
-  color: #222;
+  color: #1f1f1f;
 }
 
-body.light nav {
-  background-color: rgba(255,255,255,0.85);
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+/* Headers */
+h1, h2, h3, h4 {
+  color: #00c8ff !important;
+}
+
+/* Light Mode Headers */
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4 {
+  color: #00c8ff !important;
+}
+
+/* Navigation */
+nav {
+  border-bottom: 1px solid rgba(0, 200, 255, 0.25);
+}
+
+nav a {
+  color: #b8faff;
+}
+
+nav a:hover {
+  color: #00a4cc;
+}
+
+/* Sections */
+section {
+  background: rgba(28, 28, 28, 0.85);
+  border: 1px solid rgba(0, 200, 255, 0.25);
 }
 
 body.light section {
   background: rgba(255,255,255,0.9);
   border-color: rgba(0,0,0,0.15);
-  box-shadow: 0 0 25px rgba(0,0,0,0.1);
 }
 
-body.light h2 {
-  color: #007b9e;
-}
-
-body.light footer {
-  background: rgba(255,255,255,0.9);
-  color: #444;
-}
-
-/* 🌈 Particle Background (Soft) */
-#particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.15;
-}
-
-/* 🌗 Mode Toggle */
-#modeToggle {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  background: #00bcd4;
-  color: #0f0f0f;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1em;
-  box-shadow: 0 0 12px rgba(0,188,212,0.4);
-  z-index: 999;
-}
-
-/* 🧭 Navigation */
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  background-color: rgba(18, 18, 18, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 18px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0, 188, 212, 0.25);
-}
-
-nav a {
-  color: #b8faff;
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  transition: all 0.25s ease;
-}
-
-nav a:hover {
-  color: #00bcd4;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* 🏷️ Header */
-header {
-  text-align: center;
-  padding: 100px 20px 60px;
-  font-size: 2.4em;
-  font-weight: 700;
-  color: #f0f0f0;
-  letter-spacing: 0.8px;
-  background: linear-gradient(180deg, rgba(20,20,20,0.95) 0%, rgba(25,25,25,0.85) 100%);
-  border-bottom: 1px solid rgba(0,188,212,0.15);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-.headline {
-  font-size: .9em;
-  color: #80eaff;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 12px;
-  text-transform: uppercase;
-}
-
-.tagline {
-  font-size: .7em;
-  color: #00bcd4;
-  margin-top: 10px;
-  font-style: italic;
-  letter-spacing: 0.6px;
-}
-
-/* 💎 Divider */
-header::after {
-  content: "";
-  display: block;
-  width: 120px;
-  height: 2px;
-  margin: 25px auto 0;
-  background: linear-gradient(90deg, #00bcd4, #80eaff);
-  opacity: 0.6;
-  border-radius: 2px;
-}
-
-/* 📦 Section Containers */
-section {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 45px;
-  background: rgba(28, 28, 28, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 188, 212, 0.15);
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(0, 188, 212, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px rgba(0, 188, 212, 0.25);
-}
-
-h2 {
-  color: #00bcd4;
-  font-size: 2em;
-  font-weight: 600;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 12px;
-  letter-spacing: 0.6px;
-}
-
-/* 🧩 Skills Grid */
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.skills-grid span {
-  background: rgba(0,188,212,0.15);
-  border: 1px solid rgba(0,188,212,0.3);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1em;
-  color: #b8faff;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.skills-grid span:hover {
-  background: rgba(0,188,212,0.3);
-  transform: scale(1.08);
-}
-
-/* ⚙️ Tech Stack Bars */
-.stack-bars div {
-  margin: 12px 0;
-}
-
-.stack-bars span {
-  display: inline-block;
-  width: 260px;
-  color: #80eaff;
-  font-weight: 500;
-}
-
-.bar {
-  display: inline-block;
-  height: 10px;
-  width: 55%;
-  background: rgba(0,188,212,0.25);
-  border-radius: 5px;
-  position: relative;
-}
-
-.bar::after {
-  content: "";
-  position: absolute;
-  height: 10px;
-  border-radius: 5px;
-  background: #00bcd4;
-  animation: fillBar 2s ease forwards;
-}
-
-@keyframes fillBar {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-/* Individual Bar Colors */
-.bar.linux::after { background: #00bcd4; }
-.bar.pi::after { background: #4dd0e1; }
-.bar.windows::after { background: #29b6f6; }
-.bar.vm::after { background: #26c6da; }
-.bar.js::after { background: #ffd54f; }
-.bar.py::after { background: #ffb74d; }
-.bar.react::after { background: #80deea; }
-.bar.devvit::after { background: #00e5ff; }
-.bar.ai::after { background: #64ffda; }
-.bar.crypto::after { background: #00c853; }
-
-/* 💻 Project Cards */
-.project-card {
-  background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%);
-  border: 1px solid #2a2a2a;
-  border-radius: 10px;
-  padding: 28px;
-  margin-bottom: 28px;
-  transition: all 0.4s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: #00bcd4;
-  box-shadow: 0 0 30px rgba(0, 188, 212, 0.3);
-}
-
-.project-card h3 {
-  color: #00bcd4;
-  margin-bottom: 12px;
-}
-
-.project-card a {
-  color: #b8faff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.project-card a:hover {
-  color: #00bcd4;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.status {
-  display: inline-block;
-  margin-top: 10px;
-  color: #80eaff;
-  font-style: italic;
-}
-
-/* 📄 Resume Button */
-.resume-btn {
-  display: inline-block;
-  background: #00bcd4;
-  color: #0f0f0f;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.3s ease;
-  margin-bottom: 25px;
-}
-
-.resume-btn:hover {
-  background: #80eaff;
-  transform: scale(1.05);
-}
-
-/* 📄 Resume Embed */
-iframe {
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 188, 212, 0.25);
-}
-
-/* 🧭 Floating Sidebar */
-#sidebar {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(20,20,20,0.85);
-  border: 1px solid rgba(0,188,212,0.25);
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,188,212,0.2);
-  z-index: 999;
-}
-
-#sidebar a {
-  display: block;
-  margin: 10px 0;
-  color: #80eaff;
-  text-decoration: none;
-  font-size: 0.95em;
-  transition: color 0.3s ease;
-}
-
-#sidebar a:hover {
-  color: #00bcd4;
-}
-
-/* ⬆ Scroll to Top Button */
-#scrollTop {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #00bcd4;
-  color: #0f0f0f;
-  padding: 12px 18px;
-  border-radius: 50%;
-  font-size: 1.2em;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(0,188,212,0.3);
-  transition: transform 0.3s ease, background 0.3s ease;
-  display: none;
-}
-
-#scrollTop:hover {
-  background: #80eaff;
-  transform: scale(1.15);
-}
-
-/* 🦶 Footer */
-footer {
-  text-align: center;
-  padding: 25px;
-  font-size: 0.9em;
-  color: #888;
-  border-top: 1px solid #2a2a2a;
-  margin-top: 60px;
-  background: rgba(20,20,20,0.9);
-}
-
-/* 🔥 Global Link Override — Fix Blue Hyperlinks */
+/* Links */
 a {
   color: #b8faff !important;
-  text-decoration: none !important;
 }
 
 a:hover {
-  color: #00bcd4 !important;
-  text-decoration: underline !important;
-  text-underline-offset: 4px;
+  color: #00a4cc !important;
 }
 
-/* ============================
-   📱 Mobile Optimization
-============================ */
-@media (max-width: 900px) {
-
-  /* Header */
-  header {
-    font-size: 1.8em;
-    padding: 60px 20px 40px;
-  }
-
-  .headline {
-    font-size: 0.8em;
-  }
-
-  .tagline {
-    font-size: 0.6em;
-  }
-
-  /* Navigation */
-  nav {
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 12px 0;
-  }
-
-  nav a {
-    font-size: 0.95em;
-  }
-
-  /* Sections */
-  section {
-    padding: 30px 20px;
-    margin: 40px 10px;
-  }
-
-  h2 {
-    font-size: 1.6em;
-  }
-
-  /* Skills Grid */
-  .skills-grid {
-    gap: 10px;
-  }
-
-  .skills-grid span {
-    padding: 8px 12px;
-    font-size: 0.9em;
-  }
-
-  /* Tech Stack Bars */
-  .stack-bars span {
-    width: 180px;
-    font-size: 0.9em;
-  }
-
-  .bar {
-    width: 45%;
-  }
-
-  /* Project Cards */
-  .project-card {
-    padding: 20px;
-  }
-
-  .project-card h3 {
-    font-size: 1.3em;
-  }
-
-  /* Resume iframe */
-  iframe {
-    height: 500px;
-  }
-
-  /* Sidebar → Bottom Bar */
-  #sidebar {
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    right: 0;
-    left: 0;
-    transform: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    border-radius: 0;
-    border-top: 1px solid rgba(0,188,212,0.25);
-    background: rgba(20,20,20,0.95);
-  }
-
-  #sidebar a {
-    margin: 0;
-    font-size: 0.85em;
-  }
-
-  /* Scroll to Top Button */
-  #scrollTop {
-    bottom: 80px;
-    right: 20px;
-  }
+/* Buttons */
+#modeToggle,
+#scrollTop,
+.resume-btn {
+  background: #00c8ff;
+  color: #0f0f0f;
 }
 
-@media (max-width: 600px) {
-  header {
-    font-size: 1.5em;
-  }
+#modeToggle:hover,
+#scrollTop:hover,
+.resume-btn:hover {
+  background: #80eaff;
+}
 
-  .headline {
-    font-size: 0.75em;
-  }
+/* Sidebar */
+#sidebar {
+  border: 1px solid rgba(0, 200, 255, 0.25);
+}
 
-  .tagline {
-    font-size: 0.55em;
-  }
+#sidebar a {
+  color: #80eaff;
+}
 
-  nav {
-    gap: 12px;
-  }
+#sidebar a:hover {
+  color: #00a4cc;
+}
 
-  nav a {
-    font-size: 0.85em;
-  }
+/* Project Cards */
+.project-card {
+  border: 1px solid #2a2a2a;
+}
 
-  section {
-    padding: 25px 15px;
-  }
+.project-card:hover {
+  border-color: #00c8ff;
+}
 
-  h2 {
-    font-size: 1.4em;
-  }
+.project-card h3 {
+  color: #00c8ff;
+}
 
-  .skills-grid span {
-    font-size: 0.85em;
-  }
+.status {
+  color: #80eaff;
+}
 
-  .project-card h3 {
-    font-size: 1.2em;
-  }
-
-  iframe {
-    height: 400px;
-  }
+/* Footer */
+footer {
+  border-top: 1px solid #2a2a2a;
+  background: rgba(20,20,20,0.9);
+  color: #888;
 }
