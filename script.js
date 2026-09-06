@@ -1,10 +1,7 @@
 /* ============================
-   Particle Background
+   Soft Particle Background
 ============================ */
-const canvas = document.createElement("canvas");
-canvas.id = "particles";
-document.body.appendChild(canvas);
-
+const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 let particles = [];
 
@@ -17,13 +14,13 @@ window.addEventListener("resize", resizeCanvas);
 
 function createParticles() {
   particles = [];
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 50; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.8,
-      dy: (Math.random() - 0.5) * 0.8
+      r: Math.random() * 1.5 + 0.5,
+      dx: (Math.random() - 0.5) * 0.4,
+      dy: (Math.random() - 0.5) * 0.4
     });
   }
 }
@@ -31,7 +28,7 @@ createParticles();
 
 function drawParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(0, 188, 212, 0.7)";
+  ctx.fillStyle = "rgba(0, 188, 212, 0.5)";
 
   particles.forEach(p => {
     ctx.beginPath();
@@ -52,21 +49,7 @@ drawParticles();
 /* ============================
    Dark / Light Mode Toggle
 ============================ */
-const modeToggle = document.createElement("button");
-modeToggle.innerText = "☀ / 🌙";
-modeToggle.style.position = "fixed";
-modeToggle.style.left = "20px";
-modeToggle.style.bottom = "20px";
-modeToggle.style.padding = "10px 14px";
-modeToggle.style.borderRadius = "8px";
-modeToggle.style.border = "none";
-modeToggle.style.background = "#00bcd4";
-modeToggle.style.color = "#0f0f0f";
-modeToggle.style.cursor = "pointer";
-modeToggle.style.fontSize = "1.1em";
-modeToggle.style.boxShadow = "0 0 12px rgba(0,188,212,0.4)";
-modeToggle.style.zIndex = "999";
-document.body.appendChild(modeToggle);
+const modeToggle = document.getElementById("modeToggle");
 
 modeToggle.addEventListener("click", () => {
   document.body.classList.toggle("light");
@@ -75,38 +58,15 @@ modeToggle.addEventListener("click", () => {
 /* ============================
    Scroll-to-Top Button
 ============================ */
-const scrollBtn = document.createElement("div");
-scrollBtn.id = "scrollTop";
-scrollBtn.innerHTML = "↑";
-document.body.appendChild(scrollBtn);
+const scrollBtn = document.getElementById("scrollTop");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.style.display = "block";
-  } else {
-    scrollBtn.style.display = "none";
-  }
+  scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
 scrollBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
-/* ============================
-   Floating Sidebar
-============================ */
-const sidebar = document.createElement("div");
-sidebar.id = "sidebar";
-sidebar.innerHTML = `
-  <a href="#summary">Summary</a>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#tech-stack">Tech Stack</a>
-  <a href="#projects">Projects</a>
-  <a href="#resume">Resume</a>
-  <a href="#contact">Contact</a>
-`;
-document.body.appendChild(sidebar);
 
 /* ============================
    Smooth Anchor Scrolling
@@ -135,59 +95,3 @@ function revealSections() {
 
 window.addEventListener("scroll", revealSections);
 revealSections();
-
-/* ============================
-   Terminal Intro (Button Activated)
-============================ */
-const terminalBtn = document.getElementById("launchTerminal");
-const terminalPanel = document.getElementById("terminalIntro");
-
-terminalBtn.addEventListener("click", () => {
-  terminalPanel.style.display = "block";
-
-  setTimeout(() => {
-    terminalPanel.style.display = "none";
-    diagnosticsPanel.style.display = "block";
-  }, 6000);
-});
-
-/* ============================
-   Diagnostics Panel
-============================ */
-const diagnosticsPanel = document.getElementById("diagnosticsPanel");
-
-/* ============================
-   Raspberry Pi Easter Egg
-============================ */
-const piEgg = document.getElementById("piEgg");
-
-setTimeout(() => {
-  piEgg.style.display = "block";
-  setTimeout(() => piEgg.style.display = "none", 3000);
-}, 4000);
-
-/* ============================
-   Devvit Demo Panel
-============================ */
-const devvitDemo = document.getElementById("devvitDemo");
-
-setTimeout(() => {
-  devvitDemo.style.display = "block";
-  setTimeout(() => devvitDemo.style.display = "none", 6000);
-}, 8000);
-
-/* ============================
-   Monero Node Pulse
-============================ */
-const moneroPulse = document.getElementById("moneroPulse");
-
-/* ============================
-   Career Timeline Animation
-============================ */
-const timelineItems = document.querySelectorAll(".timeline-item");
-
-timelineItems.forEach((item, index) => {
-  setTimeout(() => {
-    item.style.opacity = "1";
-  }, index * 600);
-});
