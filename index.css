@@ -1,9 +1,9 @@
-/* index.css — Refined Professional Portfolio Styling */
+/* Travis Baker Portfolio — Refined Professional Styling */
 
 /* 🌑 Global Layout */
 body {
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top left, #0d0d0d 0%, #1a1a1a 100%);
+  background: linear-gradient(180deg, #0e0e0e 0%, #1a1a1a 100%);
   color: #e0e0e0;
   margin: 0;
   padding: 0;
@@ -27,7 +27,7 @@ nav {
 }
 
 nav a {
-  color: #80eaff;
+  color: #b0f4ff;
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -36,58 +36,29 @@ nav a {
 
 nav a:hover {
   color: #00bcd4;
-  transform: scale(1.08);
-  text-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+  transform: scale(1.05);
+  text-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
 }
 
 /* 🏷️ Header */
 header {
   position: relative;
   text-align: center;
-  padding: 90px 20px 50px;
+  padding: 100px 20px 60px;
   font-size: 2.8em;
   font-weight: 700;
   color: #e0e0e0;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   z-index: 1;
+  background: linear-gradient(180deg, rgba(20,20,20,0.95) 0%, rgba(25,25,25,0.85) 100%);
+  border-bottom: 1px solid rgba(0,188,212,0.15);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  animation: headerFade 1.2s ease-out forwards;
 }
 
-/* 🌈 Animated Glow Behind Header */
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 85%;
-  height: 200px;
-  background: radial-gradient(circle at center, rgba(0,188,212,0.4), rgba(0,122,204,0.25), transparent 70%);
-  animation: headerGlow 6s infinite alternate;
-  z-index: -1;
-  border-radius: 50%;
-  filter: blur(60px);
-}
-
-@keyframes headerGlow {
-  0% { opacity: 0.4; transform: translateX(-50%) scale(1); }
-  100% { opacity: 0.7; transform: translateX(-50%) scale(1.05); }
-}
-
-/* ✨ Animated Accent Line */
-header::after {
-  content: "";
-  display: block;
-  width: 140px;
-  height: 2px;
-  margin: 20px auto 0;
-  background: linear-gradient(90deg, #00bcd4, #80eaff);
-  animation: pulseLine 4s infinite alternate;
-  border-radius: 2px;
-}
-
-@keyframes pulseLine {
-  0% { opacity: 0.4; transform: scaleX(0.9); }
-  100% { opacity: 0.9; transform: scaleX(1.1); }
+@keyframes headerFade {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 🧠 Headline and Tagline */
@@ -98,7 +69,6 @@ header::after {
   letter-spacing: 1px;
   margin-top: 12px;
   text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(0,188,212,0.4);
 }
 
 .tagline {
@@ -109,7 +79,25 @@ header::after {
   letter-spacing: 0.6px;
 }
 
-/* 📦 Section Containers (Glassmorphism) */
+/* 💎 Accent Divider */
+header::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 25px auto 0;
+  background: linear-gradient(90deg, #00bcd4, #80eaff);
+  opacity: 0.6;
+  border-radius: 2px;
+  animation: dividerFade 2s ease-in-out forwards;
+}
+
+@keyframes dividerFade {
+  from { opacity: 0; transform: scaleX(0.8); }
+  to { opacity: 0.6; transform: scaleX(1); }
+}
+
+/* 📦 Section Containers */
 section {
   max-width: 1000px;
   margin: 60px auto;
@@ -138,7 +126,6 @@ h2 {
   letter-spacing: 0.6px;
 }
 
-/* ✨ Fade‑in Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
@@ -158,7 +145,7 @@ h2 {
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 1em;
-  color: #80eaff;
+  color: #b0f4ff;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -256,3 +243,11 @@ iframe {
 
 /* 🦶 Footer */
 footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9em;
+  color: #888;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 60px;
+  background: rgba(20,20,20,0.9);
+}
