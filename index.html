@@ -12,64 +12,25 @@
 
 <body>
 
-  <!-- Terminal Intro Trigger -->
-  <button id="launchTerminal">Launch System</button>
+  <!-- Particle Background -->
+  <canvas id="particles"></canvas>
 
-  <!-- Terminal Intro Panel -->
-  <div id="terminalIntro">
-    <div class="terminal-content">
-      <p>> Initializing system...</p>
-      <p>> Loading Linux modules...</p>
-      <p>> Checking Raspberry Pi interfaces...</p>
-      <p>> Verifying VM hypervisor integrity...</p>
-      <p>> Starting decentralized node pulse...</p>
-      <p>> Preparing AI diagnostic routines...</p>
-      <p>> System ready.</p>
-    </div>
+  <!-- Dark/Light Mode Toggle -->
+  <button id="modeToggle">☀ / 🌙</button>
+
+  <!-- Scroll to Top -->
+  <div id="scrollTop">↑</div>
+
+  <!-- Floating Sidebar -->
+  <div id="sidebar">
+    <a href="#summary">Summary</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#tech-stack">Tech Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
   </div>
-
-  <!-- System Diagnostics Panel -->
-  <div id="diagnosticsPanel">
-    <h3>System Diagnostics</h3>
-    <ul>
-      <li>Linux Distros Installed: Kali, Ubuntu, Mint</li>
-      <li>ARM Systems: Raspberry Pi 3B+, Pi Zero</li>
-      <li>VM Platforms: VirtualBox, VMware</li>
-      <li>Windows Environments: Proprietary & Repurposed Hardware</li>
-      <li>Decentralized Node: Monero Full Node</li>
-      <li>AI Pipelines: Outlier Aether Project, Alignerr QA</li>
-    </ul>
-  </div>
-
-  <!-- Raspberry Pi Easter Egg -->
-  <div id="piEgg">🐧 Raspberry Pi Detected</div>
-
-  <!-- Devvit Web Demo Panel -->
-  <div id="devvitDemo">
-    <h3>Devvit Web Demo</h3>
-    <p>Simulated Reddit App Environment</p>
-    <div class="devvit-window">
-      <p>> Rendering UI components...</p>
-      <p>> Loading game logic...</p>
-      <p>> StreakRush module active.</p>
-    </div>
-  </div>
-
-  <!-- Monero Node Pulse -->
-  <div id="moneroPulse"></div>
-
-  <!-- Career Timeline -->
-  <section id="timeline">
-    <h2>Career Timeline</h2>
-    <div class="timeline-container">
-      <div class="timeline-item">Construction Contractor → Business Owner</div>
-      <div class="timeline-item">Linux Systems & Raspberry Pi Experimentation</div>
-      <div class="timeline-item">AI Data Annotation (Outlier)</div>
-      <div class="timeline-item">AI QA Auditor (Alignerr)</div>
-      <div class="timeline-item">Frontend & Devvit Web Developer</div>
-      <div class="timeline-item">Systems Technician & AI Specialist</div>
-    </div>
-  </section>
 
   <!-- 🌈 Header -->
   <header>
@@ -93,11 +54,12 @@
   <section id="summary">
     <h2>Professional Summary</h2>
     <p>
-      AI Data Specialist and QA Auditor with hands‑on experience in Linux systems, Raspberry Pi development,
-      virtual machines, Windows environments, and frontend engineering. Skilled in evaluating AI outputs,
-      annotating structured data, and maintaining reliable systems across diverse hardware — both proprietary
-      and repurposed. Combining technical precision with entrepreneurial problem‑solving to build stable,
-      efficient, and meaningful digital solutions.
+      AI Data Specialist and Systems Technician with hands‑on experience across Linux environments, Raspberry Pi development,
+      virtual machines, Windows systems, and frontend engineering. I specialize in evaluating AI outputs, improving data quality,
+      and maintaining reliable multi‑OS environments on both consumer and repurposed hardware. My background blends technical
+      problem‑solving, system optimization, and practical engineering with the discipline gained from running a construction
+      business. I bring a structured, adaptable approach to building stable systems, improving AI reliability, and developing
+      interactive web experiences.
     </p>
   </section>
 
@@ -105,42 +67,39 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I’m Travis Baker — a systems‑focused technician, QA auditor, and AI data specialist passionate about building
-      reliable environments and intelligent workflows. Before transitioning into tech, I founded and operated a
-      construction startup, completing hundreds of residential and commercial projects across Fayetteville and
-      surrounding areas. I drafted and managed all service contracts, gaining experience in operations, negotiation,
-      and project management.
+      I’m Travis Baker — a systems‑focused technician, QA auditor, and AI data specialist passionate about building reliable
+      environments and intelligent workflows. Before transitioning into tech, I founded and operated a construction startup,
+      completing hundreds of residential and commercial projects across Fayetteville and surrounding areas. I drafted and managed
+      all service contracts, gaining experience in operations, negotiation, and project management.
     </p>
 
     <p>
-      I have hands‑on experience installing, configuring, and troubleshooting multiple operating systems including
-      Kali Linux, Ubuntu, Linux Mint, Raspberry Pi OS, and Windows — both on standard consumer hardware and
-      repurposed machines. I’ve flashed ARM‑based Linux distros, repaired bootloaders, configured virtual machines,
-      and repurposed older hardware for development and experimentation.
+      I have hands‑on experience installing, configuring, and troubleshooting multiple operating systems including Kali Linux,
+      Ubuntu, Linux Mint, Raspberry Pi OS, and Windows — both on standard consumer hardware and repurposed machines. I’ve flashed
+      ARM‑based Linux distros, repaired bootloaders, configured virtual machines, and repurposed older hardware for development
+      and experimentation.
     </p>
 
     <p>
-      My systems experience extends into decentralized computing. I built and maintained a Monero mining machine and
-      node, gaining practical knowledge in networking, system reliability, and distributed systems.
+      My systems experience extends into decentralized computing. I built and maintained a Monero mining machine and node,
+      gaining practical knowledge in networking, system reliability, and distributed systems.
     </p>
 
     <p>
-      In the AI field, I contributed to the Aether Project as a data annotator with Outlier, helping improve model
-      reasoning and structured data quality. As a QA Auditor at Alignerr, I evaluate AI outputs for accuracy,
-      consistency, and ethical data handling — strengthening my understanding of how human insight shapes reliable
-      AI systems.
+      In the AI field, I contributed to the Aether Project as a data annotator with Outlier, helping improve model reasoning and
+      structured data quality. As a QA Auditor at Alignerr, I evaluate AI outputs for accuracy, consistency, and ethical data
+      handling — strengthening my understanding of how human insight shapes reliable AI systems.
     </p>
 
     <p>
-      I also develop interactive web experiences using JavaScript, TypeScript, HTML, CSS, and Devvit Web. My projects
-      include StreakRush, Click Syndicate, and N‑Finity — each exploring user interaction, probability, or intelligent
-      system behavior.
+      I also develop interactive web experiences using JavaScript, TypeScript, HTML, CSS, and Devvit Web. My projects include
+      StreakRush, Click Syndicate, and N‑Finity — each exploring user interaction, probability, or intelligent system behavior.
     </p>
 
     <p>
-      Academically, I’m pursuing my Associate’s Degree in Software Engineering, having completed PY103 and FE102.
-      My studies, combined with hands‑on Linux experimentation and AI work, give me a strong foundation in both
-      software and systems engineering.
+      Academically, I’m pursuing my Associate’s Degree in Software Engineering, having completed PY103 and FE102. My studies,
+      combined with hands‑on Linux experimentation and AI work, give me a strong foundation in both software and systems
+      engineering.
     </p>
   </section>
 
@@ -181,15 +140,6 @@
       <div><span>AI Annotation & QA</span><div class="bar ai"></div></div>
       <div><span>Decentralized Systems (Monero Node)</span><div class="bar crypto"></div></div>
     </div>
-  </section>
-
-  <!-- 💡 Core Approach -->
-  <section id="values">
-    <h2>Core Approach</h2>
-    <p>
-      I approach every project with structure, reliability, and adaptability — balancing creativity with technical
-      discipline. My goal is to build systems that work consistently, whether they’re physical, digital, or intelligent.
-    </p>
   </section>
 
   <!-- 💻 Projects -->
