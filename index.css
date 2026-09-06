@@ -109,7 +109,7 @@ header {
 }
 
 .headline {
-  font-size: 1.25em;
+  font-size: 1em;
   color: #80eaff;
   font-weight: 500;
   letter-spacing: 1px;
@@ -118,7 +118,7 @@ header {
 }
 
 .tagline {
-  font-size: 1.1em;
+  font-size: .8em;
   color: #00bcd4;
   margin-top: 10px;
   font-style: italic;
