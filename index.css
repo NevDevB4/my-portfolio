@@ -1,4 +1,4 @@
-/* index.css — Final Professional Portfolio Styling */
+/* index.css — Professional Portfolio Styling */
 
 /* 🌑 Global Layout */
 body {
@@ -17,13 +17,13 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 40px;
-  background-color: rgba(25, 25, 25, 0.95);
+  background-color: rgba(25, 25, 25, 0.85);
   backdrop-filter: blur(6px);
   padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid rgba(0, 188, 212, 0.2);
 }
 
 nav a {
@@ -61,8 +61,7 @@ header::before {
   transform: translateX(-50%);
   width: 80%;
   height: 180px;
-  background: radial-gradient(circle at center, rgba(0,188,212,0.35), transparent 70%),
-              radial-gradient(circle at 70% 40%, rgba(0,122,204,0.3), transparent 70%);
+  background: radial-gradient(circle at center, rgba(0,188,212,0.4), rgba(0,122,204,0.25), transparent 70%);
   animation: headerGlow 6s infinite alternate;
   z-index: -1;
   border-radius: 50%;
@@ -74,96 +73,7 @@ header::before {
   100% { opacity: 0.7; transform: translateX(-50%) scale(1.05); }
 }
 
-/* 🧾 Subtitle and Tagline */
-.subtitle {
-  font-size: 1.1em;
-  color: #e0e0e0;
-  margin-top: 10px;
-}
-
-.tagline {
-  font-size: 1em;
-  color: #80eaff;
-  margin-top: 5px;
-  font-style: italic;
-}
-
-/* 📦 Section Containers */
-section {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 40px;
-  background-color: #1c1c1c;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 188, 212, 0.1);
-  animation: fadeIn 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-section:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 25px rgba(0, 188, 212, 0.2);
-}
-
-h2 {
-  color: #00bcd4;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 10px;
-}
-
-/* ✨ Fade‑in Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 🧱 Project Cards */
-.project-card {
-  background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%);
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  padding: 25px;
-  margin-bottom: 25px;
-  transition: all 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(0, 188, 212, 0.25);
-}
-
-.project-card h3 {
-  color: #00
-}
-
-section {
-  background: rgba(28, 28, 28, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 188, 212, 0.15);
-}
-
-/* 🧠 Headline Styling */
-.headline {
-  font-size: 1.2em;
-  color: #80eaff;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  margin-top: 10px;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(0,188,212,0.4);
-}
-
-/* 🌈 Tagline Styling */
-.tagline {
-  font-size: 1.05em;
-  color: #00bcd4;
-  margin-top: 8px;
-  font-style: italic;
-  letter-spacing: 0.5px;
-}
-
+/* ✨ Animated Accent Line */
 header::after {
   content: "";
   display: block;
@@ -179,3 +89,173 @@ header::after {
   0% { opacity: 0.4; transform: scaleX(0.9); }
   100% { opacity: 0.9; transform: scaleX(1.1); }
 }
+
+/* 🧠 Headline and Tagline */
+.headline {
+  font-size: 1.2em;
+  color: #80eaff;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0,188,212,0.4);
+}
+
+.tagline {
+  font-size: 1.05em;
+  color: #00bcd4;
+  margin-top: 8px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* 📦 Section Containers (Glassmorphism) */
+section {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 40px;
+  background: rgba(28, 28, 28, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 188, 212, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.1);
+  animation: fadeIn 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.2);
+}
+
+h2 {
+  color: #00bcd4;
+  font-size: 1.9em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* ✨ Fade‑in Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🧱 Project Cards */
+.project-card {
+  background: linear-gradient(180deg, #1f1f1f 0%, #242424 100%);
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+  transition: all 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: #00bcd4;
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.3);
+}
+
+.project-card h3 {
+  color: #00bcd4;
+  margin-bottom: 10px;
+}
+
+.project-card a {
+  color: #80eaff;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.project-card a:hover {
+  color: #00bcd4;
+  text-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+}
+
+/* 🧩 Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skills-grid span {
+  background: rgba(0,188,212,0.15);
+  border: 1px solid rgba(0,188,212,0.3);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.95em;
+  color: #80eaff;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.skills-grid span:hover {
+  background: rgba(0,188,212,0.3);
+  transform: scale(1.05);
+}
+
+/* 📄 Resume Embed */
+iframe {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+}
+
+/* 🦶 Footer */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9em;
+  color: #888;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 60px;
+}
+
+/* 🌠 Animated Footer Glow */
+footer::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 120px;
+  background: radial-gradient(circle at center, rgba(0,188,212,0.25), transparent 70%),
+              radial-gradient(circle at 30% 60%, rgba(0,122,204,0.25), transparent 70%);
+  animation: footerGlow 6s infinite alternate;
+  z-index: -1;
+  filter: blur(40px);
+}
+
+@keyframes footerGlow {
+  0% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0.7; transform: translateX(-50%) scale(1.05); }
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  section {
+    margin: 20px;
+    padding: 25px;
+  }
+
+  header {
+    font-size: 2em;
+  }
+
+  .headline {
+    font-size: 1em;
+  }
+
+  .tagline {
