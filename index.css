@@ -99,7 +99,7 @@ nav a:hover {
 header {
   text-align: center;
   padding: 100px 20px 60px;
-  font-size: 2.8em;
+  font-size: 2.4em;
   font-weight: 700;
   color: #f0f0f0;
   letter-spacing: 0.8px;
@@ -109,7 +109,7 @@ header {
 }
 
 .headline {
-  font-size: .7em;
+  font-size: .9em;
   color: #80eaff;
   font-weight: 500;
   letter-spacing: 1px;
@@ -118,7 +118,7 @@ header {
 }
 
 .tagline {
-  font-size: .4em;
+  font-size: .7em;
   color: #00bcd4;
   margin-top: 10px;
   font-style: italic;
@@ -379,16 +379,16 @@ a:hover {
 
   /* Header */
   header {
-    font-size: 2em;
+    font-size: 1.8em;
     padding: 60px 20px 40px;
   }
 
   .headline {
-    font-size: 1.1em;
+    font-size: 0.8em;
   }
 
   .tagline {
-    font-size: 1em;
+    font-size: 0.6em;
   }
 
   /* Navigation */
@@ -475,9 +475,16 @@ a:hover {
 }
 
 @media (max-width: 600px) {
-
   header {
-    font-size: 1.6em;
+    font-size: 1.5em;
+  }
+
+  .headline {
+    font-size: 0.75em;
+  }
+
+  .tagline {
+    font-size: 0.55em;
   }
 
   nav {
