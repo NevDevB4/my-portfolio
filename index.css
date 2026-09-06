@@ -359,3 +359,15 @@ footer {
   margin-top: 60px;
   background: rgba(20,20,20,0.9);
 }
+
+/* 🔥 Global Link Override — Fix Blue Hyperlinks */
+a {
+  color: #b8faff !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #00bcd4 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
