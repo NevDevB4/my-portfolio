@@ -1,28 +1,39 @@
 /* ==========================================
-   1. CSS RESET & VARIABLES
+   PERSISTENT TECH PORTFOLIO STYLESHEET
+   File: index.css
    ========================================== */
+
+/* ------------------------------------------
+   1. CSS RESET & THEME VARIABLES
+   ------------------------------------------ */
 :root {
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
+  --bg-color: #0b0f19;
+  --card-bg: rgba(30, 41, 59, 0.7);
   --text-color: #f8fafc;
   --text-muted: #94a3b8;
   --accent: #38bdf8;
   --accent-hover: #0ea5e9;
   --border-color: rgba(255, 255, 255, 0.1);
+  --grid-line: rgba(56, 189, 248, 0.05);
+  --grid-dot: rgba(56, 189, 248, 0.15);
+  --glass-glow: rgba(56, 189, 248, 0.08);
 }
 
 [data-theme="light"] {
   --bg-color: #f8fafc;
-  --card-bg: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.8);
   --text-color: #0f172a;
   --text-muted: #64748b;
   --accent: #0284c7;
   --accent-hover: #0369a1;
   --border-color: rgba(0, 0, 0, 0.1);
+  --grid-line: rgba(2, 132, 199, 0.05);
+  --grid-dot: rgba(2, 132, 199, 0.15);
+  --glass-glow: rgba(2, 132, 199, 0.05);
 }
 
-/* Global Reset to eliminate unwanted browser margins */
-* {
+/* Hard reset to kill the default top margin gap completely */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,18 +48,53 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* ==========================================
-   2. HYPERLINK STYLING (FIXED BLUE LINKS)
-   ========================================== */
+/* ------------------------------------------
+   2. ORIGINAL CANVAS & CSS NODE GRID LAYER
+   ------------------------------------------ */
+/* Layer 1: Pure CSS Grid Matrix (Fallback & Structure) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at center, var(--grid-dot) 1.5px, transparent 1.5px),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 32px 32px;
+  background-position: 0 0;
+}
+
+/* Layer 2: Dynamic Canvas Particle/Node Engine */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* ------------------------------------------
+   3. GLOBAL HYPERLINK & INTERACTION STYLES
+   ------------------------------------------ */
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  font-weight: 500;
+  transition: color 0.2s ease, opacity 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 a:hover {
@@ -56,49 +102,20 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Explicit targeting for contact section and footer links */
-section#contact a, 
+/* Guaranteed override for bottom sections (Contact & Footer) */
+section#contact a,
 footer a {
   color: var(--accent);
 }
 
-section#contact a:hover, 
+section#contact a:hover,
 footer a:hover {
   color: var(--accent-hover);
 }
 
-/* ==========================================
-   3. BACKGROUND, CANVAS, & POINT GRID
-   ========================================== */
-/* Particle Background & Interactive Grid */
-#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  display: block;
-  background-color: var(--bg-color);
-}
-
-/* Optional styling to ensure canvas point grids render cleanly with high contrast */
-canvas#particles {
-  opacity: 0.85;
-}
-
-#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  display: block;
-}
-
+/* ------------------------------------------
+   4. NAVIGATION & UI CONTROLS
+   ------------------------------------------ */
 #modeToggle {
   position: fixed;
   top: 20px;
@@ -106,17 +123,19 @@ canvas#particles {
   background: var(--card-bg);
   color: var(--text-color);
   border: 1px solid var(--border-color);
-  padding: 8px 12px;
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
   z-index: 1000;
   font-size: 1rem;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s ease;
 }
 
 #modeToggle:hover {
   background: var(--accent);
   color: #ffffff;
+  border-color: var(--accent);
 }
 
 #scrollTop {
@@ -125,20 +144,28 @@ canvas#particles {
   right: 20px;
   background: var(--accent);
   color: #ffffff;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
   z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #scrollTop.visible {
   opacity: 1;
+  visibility: visible;
+}
+
+#scrollTop:hover {
+  transform: translateY(-3px);
+  background: var(--accent-hover);
 }
 
 /* Floating Sidebar Navigation (Desktop) */
@@ -151,11 +178,12 @@ canvas#particles {
   flex-direction: column;
   gap: 12px;
   background: var(--card-bg);
-  padding: 15px 20px;
+  backdrop-filter: blur(12px);
+  padding: 16px 20px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   z-index: 800;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar a {
@@ -169,19 +197,19 @@ canvas#particles {
   text-decoration: none;
 }
 
-/* ==========================================
-   4. LAYOUT & SECTIONS
-   ========================================== */
+/* Header & Hero Section */
 header.hero {
-  padding: 40px 20px 40px 20px; /* Streamlined top padding to prevent giant space */
+  padding: 40px 20px 30px 20px;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
+  background: radial-gradient(circle at top center, var(--glass-glow), transparent 70%);
 }
 
 header.hero h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
 header.hero p {
@@ -190,18 +218,20 @@ header.hero p {
 }
 
 .hero-subtitle {
-  max-width: 700px;
-  margin: 15px auto 0 auto;
+  max-width: 720px;
+  margin: 14px auto 0 auto;
   font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  padding: 15px;
+  gap: 18px;
+  padding: 14px 20px;
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
@@ -211,12 +241,21 @@ nav {
 nav a {
   font-weight: 600;
   font-size: 0.9rem;
+  color: var(--text-color);
 }
 
+nav a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ------------------------------------------
+   5. SECTIONS & CARDS
+   ------------------------------------------ */
 section {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 50px 20px;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -224,11 +263,9 @@ section h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   color: var(--accent);
+  letter-spacing: -0.01em;
 }
 
-/* ==========================================
-   5. CARDS & GRIDS
-   ========================================== */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -239,20 +276,28 @@ section h2 {
 .about-card, 
 .project-card {
   background: var(--card-bg);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.about-card h3 {
+.about-card:hover,
+.project-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.about-card h3,
+.project-card h3 {
   margin-bottom: 10px;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 .about-card h4 {
-  margin-top: 15px;
-  margin-bottom: 5px;
+  margin-top: 16px;
+  margin-bottom: 6px;
   font-size: 0.95rem;
   color: var(--accent);
 }
@@ -266,133 +311,16 @@ section h2 {
 .skills-grid span {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
 }
 
 .stack-bars > div {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .stack-bars span {
   display: block;
   font-size: 0.9rem;
-  margin-bottom: 5px;
-}
-
-.bar {
-  height: 8px;
-  background: var(--border-color);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-}
-
-.bar::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: var(--accent);
-  border-radius: 4px;
-}
-
-/* Stack Bar Width Indicators */
-.bar.linux::after { width: 90%; }
-.bar.pi::after { width: 85%; }
-.bar.windows::after { width: 80%; }
-.bar.vm::after { width: 75%; }
-.bar.js::after { width: 80%; }
-.bar.py::after { width: 70%; }
-.bar.react::after { width: 75%; }
-.bar.devvit::after { width: 80%; }
-.bar.ai::after { width: 95%; }
-.bar.crypto::after { width: 70%; }
-
-.project-card {
-  margin-bottom: 20px;
-}
-
-.project-tags {
-  display: flex;
-  gap: 8px;
-  margin: 15px 0;
-}
-
-.tech-tag {
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--accent);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.status {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* ==========================================
-   6. RESUME & FOOTER
-   ========================================== */
-.resume-btn {
-  display: inline-block;
-  background: var(--accent);
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.resume-btn:hover {
-  background: var(--accent-hover);
-  color: #ffffff;
-  text-decoration: none;
-}
-
-iframe {
-  width: 100%;
-  max-width: 100%;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border-color);
-}
-
-/* ==========================================
-   7. RESPONSIVE MEDIA QUERIES
-   ========================================== */
-@media (max-width: 1100px) {
-  #sidebar {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  header.hero h1 {
-    font-size: 1.8rem;
-  }
-  nav {
-    gap: 10px;
-  }
-  nav a {
-    font-size: 0.8rem;
-  }
-  section {
-    padding: 40px 15px;
-  }
-}
