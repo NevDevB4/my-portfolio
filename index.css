@@ -1,92 +1,128 @@
-/* ============================================
-   Portfolio Theme
-   Author: Travis Baker
-   ============================================ */
-
-/* ---------- Font Imports ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-/* ---------- Root Variables ---------- */
+/* ==========================================
+   1. CSS RESET & GLOBAL VARIABLES
+   ========================================== */
 :root {
-  --accent: #4b9fff;
-  --accent-alt: #9f4bff;
-  --bg: #0b0c10;
-  --text: #eaeaea;
-  --panel: rgba(20, 20, 20, 0.85);
-  --border: rgba(0, 200, 255, 0.25);
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* ---------- Global Reset ---------- */
+[data-theme="light"] {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Global Reset - Eliminates default browser margins and top whitespace */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+html {
   scroll-behavior: smooth;
 }
 
-/* ---------- Body & Background ---------- */
 body {
-  background: linear-gradient(180deg, var(--bg), #121212);
-  color: var(--text);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Inter', sans-serif;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: radial-gradient(circle, rgba(0,200,255,0.15) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: drift 60s linear infinite;
-  z-index: -1;
-}
-
-@keyframes drift {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 1000px; }
-}
-
-/* ---------- Typography ---------- */
-h1, h2, h3, h4 {
-  font-family: 'Poppins', sans-serif;
+/* ==========================================
+   2. HYPERLINK STYLING (FIXED BLUE LINKS)
+   ========================================== */
+a {
   color: var(--accent);
-  letter-spacing: 0.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-p, li {
-  line-height: 1.6;
-  font-size: 1.05rem;
-  color: #d0d0d0;
-}
-
-/* ---------- Navigation ---------- */
-nav {
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  text-align: center;
-}
-
-nav a {
-  color: #b8faff;
   text-decoration: none;
-  margin: 0 12px;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-nav a:hover {
-  color: #00a4cc;
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
-/* ---------- Floating Sidebar ---------- */
+/* Explicit overrides for contact section and footer links */
+section#contact a, 
+footer a {
+  color: var(--accent);
+}
+
+section#contact a:hover, 
+footer a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==========================================
+   3. BACKGROUND & UTILITIES
+   ========================================== */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#modeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+#modeToggle:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+#scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#scrollTop.visible {
+  opacity: 1;
+}
+
+/* Floating Sidebar Navigation (Desktop) */
 #sidebar {
   position: fixed;
   left: 20px;
@@ -95,340 +131,253 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  padding: 15px;
+  background: var(--card-bg);
+  padding: 15px 20px;
   border-radius: 12px;
-  z-index: 1000;
+  border: 1px solid var(--border-color);
+  z-index: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #sidebar a {
-  color: var(--text);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 #sidebar a:hover {
   color: var(--accent);
+  text-decoration: none;
 }
 
-@media (max-width: 1024px) {
-  #sidebar {
-    display: none;
-  }
-}
-
-/* ---------- Hero Section ---------- */
-.hero {
+/* ==========================================
+   4. LAYOUT & SECTIONS
+   ========================================== */
+header.hero {
+  padding: 80px 20px 40px 20px;
   text-align: center;
-  padding: 120px 20px;
-  background: radial-gradient(circle at top, #0b0c10, #000);
-  color: var(--accent);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.hero h1 {
-  font-size: 3.5rem;
-  text-shadow: 0 0 20px rgba(75,159,255,0.6);
-  animation: glow 3s ease-in-out infinite alternate;
+header.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.hero p {
-  font-size: 1.3rem;
-  color: #b8faff;
+header.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
 .hero-subtitle {
   max-width: 700px;
-  margin: 20px auto 0 auto;
-  font-size: 1.05rem;
-  color: #d0d0d0;
-  line-height: 1.6;
+  margin: 15px auto 0 auto;
+  font-size: 0.95rem;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px rgba(75,159,255,0.4); }
-  to { text-shadow: 0 0 25px rgba(159,75,255,0.8); }
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 900;
 }
 
-/* ---------- Sections ---------- */
+nav a {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 section {
-  position: relative;
-  margin: 80px auto;
-  max-width: 1000px;
-  padding: 60px;
-  border-radius: 16px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-section:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--accent);
 }
 
-/* ---------- About Section Grid ---------- */
-.about-intro {
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-}
-
+/* ==========================================
+   5. CARDS & GRIDS
+   ========================================== */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 30px;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.about-card {
-  background: rgba(25, 25, 25, 0.7);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+.about-card, 
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   padding: 24px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.about-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .about-card h3 {
-  font-size: 1.15rem;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
 .about-card h4 {
+  margin-top: 15px;
+  margin-bottom: 5px;
   font-size: 0.95rem;
-  color: #b8faff;
-  margin-top: 16px;
-  margin-bottom: 6px;
+  color: var(--accent);
 }
 
-/* ---------- Glass Panels ---------- */
-.glass {
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* ---------- AI Gradient Motion ---------- */
-.ai-gradient {
-  background: linear-gradient(120deg, var(--accent), var(--accent-alt), #ff4b9f);
-  background-size: 300% 300%;
-  animation: flow 12s ease infinite;
+.skills-grid span {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-@keyframes flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.stack-bars > div {
+  margin-bottom: 15px;
 }
 
-/* ---------- Project Cards ---------- */
-.project-card {
-  background: rgba(30,30,30,0.9);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 24px;
-  transition: all 0.4s ease;
+.stack-bars span {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.bar {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
 }
 
-.project-card::before {
-  content: "";
+.bar::after {
+  content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(120deg, rgba(75,159,255,0.2), rgba(159,75,255,0.2));
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
 }
 
-.project-card:hover::before {
-  opacity: 1;
+/* Progress bar width indicators */
+.bar.linux::after { width: 90%; }
+.bar.pi::after { width: 85%; }
+.bar.windows::after { width: 80%; }
+.bar.vm::after { width: 75%; }
+.bar.js::after { width: 80%; }
+.bar.py::after { width: 70%; }
+.bar.react::after { width: 75%; }
+.bar.devvit::after { width: 80%; }
+.bar.ai::after { width: 95%; }
+.bar.crypto::after { width: 70%; }
+
+.project-card {
+  margin-bottom: 20px;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(0,200,255,0.4);
-}
-
-.project-card h3 {
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-/* ---------- Project Tech Tags ---------- */
 .project-tags {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   margin: 15px 0;
 }
 
 .tech-tag {
-  background: rgba(75, 159, 255, 0.15);
+  background: rgba(56, 189, 248, 0.1);
   color: var(--accent);
-  border: 1px solid rgba(75, 159, 255, 0.3);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-.status::before {
-  content: "";
+.status {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 6px;
-  border-radius: 50%;
-  background: #00c8ff;
-  animation: pulseNode 1.4s infinite ease-in-out;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
-@keyframes pulseNode {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.8); opacity: 0; }
-}
-
-/* ---------- Interactive Cards ---------- */
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: perspective(600px) rotateX(8deg) rotateY(8deg);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-/* ---------- Typewriter Effect ---------- */
-.typewriter {
-  overflow: hidden;
-  border-right: 2px solid #0f0;
-  white-space: nowrap;
-  animation: typing 4s steps(40), blink 0.7s infinite step-end alternate;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  from { border-color: transparent; }
-  to { border-color: #0f0; }
-}
-
-/* ---------- Split Reveal Panels ---------- */
-.split {
-  position: relative;
-  overflow: hidden;
-}
-
-.split::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.split:hover::before {
-  transform: translateX(0);
-}
-
-/* ---------- Magnetic Hover ---------- */
-.magnetic {
-  transition: transform 0.15s ease;
-}
-
-.magnetic:hover {
-  transform: translate(var(--x), var(--y));
-}
-
-/* ---------- Diagnostics Grid ---------- */
-.diagnostics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-/* ---------- Skills Grid & Resume ---------- */
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.skills-grid span {
-  background: rgba(75, 159, 255, 0.1);
-  border: 1px solid var(--border);
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: var(--text);
-}
-
+/* ==========================================
+   6. RESUME & FOOTER
+   ========================================== */
 .resume-btn {
   display: inline-block;
   background: var(--accent);
-  color: #0b0c10;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
   font-weight: 600;
   margin-bottom: 20px;
-  transition: background 0.3s ease;
 }
 
 .resume-btn:hover {
-  background: #b8faff;
+  background: var(--accent-hover);
+  color: #ffffff;
+  text-decoration: none;
 }
 
-/* ---------- Footer ---------- */
+/* Responsive iframe constraint for resume PDF display */
+iframe {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
 footer {
-  border-top: 1px solid #2a2a2a;
-  background: rgba(20,20,20,0.9);
-  color: #888;
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color);
 }
 
-/* ---------- Scrollbar ---------- */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent), var(--accent-alt));
-  border-radius: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #0b0c10;
+/* ==========================================
+   7. RESPONSIVE MEDIA QUERIES
+   ========================================== */
+@media (max-width: 1100px) {
+  #sidebar {
+    display: none; /* Hides floating sidebar on smaller screens */
+  }
 }
 
-/* ---------- Reveal Animation ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+@media (max-width: 600px) {
+  header.hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  nav {
+    gap: 10px;
+  }
+  
+  nav a {
+    font-size: 0.8rem;
+  }
+  
+  section {
+    padding: 40px 15px;
+  }
 }
