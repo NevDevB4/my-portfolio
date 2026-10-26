@@ -68,9 +68,26 @@ footer a:hover {
 }
 
 /* ==========================================
-   3. BACKGROUND, CANVAS, & UI UTILITIES
+   3. BACKGROUND, CANVAS, & POINT GRID
    ========================================== */
-/* Particle Background / Grid Canvas */
+/* Particle Background & Interactive Grid */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+  background-color: var(--bg-color);
+}
+
+/* Optional styling to ensure canvas point grids render cleanly with high contrast */
+canvas#particles {
+  opacity: 0.85;
+}
+
 #particles {
   position: fixed;
   top: 0;
