@@ -1,185 +1,95 @@
 /* ==========================================
-   DYNAMIC CYBER-TECH ENGINE
-   File: script.js
+   PERSISTENT TECH PORTFOLIO STYLESHEET
+   File: index.css
    ========================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  initParticleGrid();
-  initScrollAnimations();
-  initThemeToggle();
-  initTerminal();
-});
-
-/* ------------------------------------------
-   1. CANVAS INTERACTIVE NODE-PARTICLE NETWORK
-   ------------------------------------------ */
-function initParticleGrid() {
-  const canvas = document.getElementById("particles");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-
-  let width, height;
-  let particles = [];
-  const particleCount = 65;
-  const maxDistance = 120;
-
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener("resize", resize);
-  resize();
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.8;
-      this.vy = (Math.random() - 0.5) * 0.8;
-      this.radius = Math.random() * 1.8 + 1;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDistance) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          const alpha = (1 - dist / maxDistance) * 0.35;
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-
-  animate();
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: rgba(15, 23, 42, 0.75);
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+  --border-color: rgba(56, 189, 248, 0.2);
+  --grid-line: rgba(56, 189, 248, 0.07);
+  --grid-dot: rgba(56, 189, 248, 0.25);
+  --glass-glow: rgba(56, 189, 248, 0.12);
+  --term-header: #1e293b;
+  --term-prompt: #10b981;
 }
 
-/* ------------------------------------------
-   2. SCROLL REVEAL & TOP BUTTON
-   ------------------------------------------ */
-function initScrollAnimations() {
-  const sections = document.querySelectorAll("section");
-  const scrollTopBtn = document.getElementById("scrollTop");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("reveal");
-      }
-    });
-  }, { threshold: 0.1 });
-
-  sections.forEach(section => observer.observe(section));
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      scrollTopBtn?.classList.add("visible");
-    } else {
-      scrollTopBtn?.classList.remove("visible");
-    }
-  });
-
-  scrollTopBtn?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+[data-theme="light"] {
+  --bg-color: #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --text-color: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --accent-glow: rgba(2, 132, 199, 0.25);
+  --border-color: rgba(2, 132, 199, 0.2);
+  --grid-line: rgba(2, 132, 199, 0.06);
+  --grid-dot: rgba(2, 132, 199, 0.2);
+  --glass-glow: rgba(2, 132, 199, 0.08);
+  --term-header: #e2e8f0;
+  --term-prompt: #059669;
 }
 
-/* ------------------------------------------
-   3. LIGHT / DARK THEME TOGGLE
-   ------------------------------------------ */
-function initThemeToggle() {
-  const toggleBtn = document.getElementById("modeToggle");
-  if (!toggleBtn) return;
-
-  toggleBtn.addEventListener("click", () => {
-    const currentTheme = document.body.getAttribute("data-theme");
-    if (currentTheme === "light") {
-      document.body.removeAttribute("data-theme");
-      toggleBtn.textContent = "🌙";
-    } else {
-      document.body.setAttribute("data-theme", "light");
-      toggleBtn.textContent = "☀️";
-    }
-  });
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ------------------------------------------
-   4. INTERACTIVE TERMINAL ENGINE
-   ------------------------------------------ */
-function initTerminal() {
-  const input = document.querySelector(".term-input");
-  const body = document.querySelector(".terminal-body");
-  if (!input || !body) return;
-
-  const commands = {
-    help: "Available commands: bio, stack, projects, clear",
-    bio: "Travis Baker: AI Data Specialist & IT student at FTCC.",
-    stack: "Linux (Debian), Python, JavaScript, Devvit, React, Virtualization.",
-    projects: "Click Syndicate, Streak Rush, GitHub Portfolio.",
-    clear: "CLEAR"
-  };
-
-  input.removeAttribute("readonly");
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const val = input.value.trim().toLowerCase();
-      if (val === "clear") {
-        body.innerHTML = `<p><span class="term-prompt">visitor@travis-baker:~$</span> <input type="text" class="term-input" placeholder="type 'help'..."><span class="cursor"></span></p>`;
-        initTerminal();
-        return;
-      }
-
-      const response = commands[val] || `Command not recognized: '${val}'. Type 'help' for options.`;
-      const output = document.createElement("p");
-      output.style.color = "#f8fafc";
-      output.style.margin = "4px 0 10px 0";
-      output.textContent = response;
-
-      body.insertBefore(output, input.parentElement);
-      input.value = "";
-    }
-  });
+html {
+  scroll-behavior: smooth;
 }
 
-     /* ==========================================
-   SCROLL FADE-IN ANIMATION FIX
-   ========================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Canvas & Node Grid */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at center, var(--grid-dot) 1.5px, transparent 1.5px),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 32px 32px;
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Scroll Fade-In Animation */
 section {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  border-bottom: 1px solid var(--border-color);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -190,66 +100,87 @@ section.reveal.visible {
   transform: translateY(0);
 }
 
-     /* ==========================================
-   UPSCALE GLASSMORPHISM & DEPTH EFFECTS
-   ========================================== */
-
-/* 1. Frosted Glass Cards with Multi-Layer Shadows & Specular Highlights */
+/* Glassmorphic Cards & UI Elements */
 .about-card, 
 .project-card, 
 .category-card, 
 .badge-card,
-.terminal-window {
-  background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
-  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Specular top edge highlight */
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.37),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.3s ease, 
-              box-shadow 0.3s ease;
-}
-
-/* Upscale hover lift with neon accent bloom */
-.about-card:hover, 
-.project-card:hover, 
-.category-card:hover, 
-.badge-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-  box-shadow: 
-    0 12px 40px 0 rgba(0, 0, 0, 0.5),
-    0 0 20px var(--accent-glow),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-}
-
-/* 2. Glassmorphic Sticky Navigation */
-nav {
-  background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* 3. Glassmorphic Floating Sidebar */
-#sidebar {
+.terminal-window,
+nav,
+#sidebar,
+#modeToggle,
+#scrollTop {
   background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
-/* 4. Glassmorphic Mode Toggle & Scroll-to-Top */
-#modeToggle, #scrollTop {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.about-card, .project-card, .category-card, .badge-card {
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover, .project-card:hover, .category-card:hover, .badge-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 14px 20px;
+}
+
+#sidebar {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  z-index: 800;
+}
+
+#modeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#scrollTop.visible {
+  opacity: 1;
+  display: flex;
 }
