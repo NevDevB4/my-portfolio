@@ -178,3 +178,39 @@ function initTerminal() {
     }
   });
 }
+
+/* 5. Interactive Terminal Engine */
+function initTerminal() {
+  const input = document.querySelector(".term-input");
+  const body = document.querySelector(".terminal-body");
+  if (!input || !body) return;
+
+  const commands = {
+    help: "Available commands: bio, stack, projects, clear",
+    bio: "Travis Baker: AI Data Specialist & IT student at FTCC.",
+    stack: "Linux (Debian), Python, JavaScript, Devvit, React, Virtualization.",
+    projects: "StreakRush, Click Syndicate, GitHub Portfolio.",
+    clear: "CLEAR"
+  };
+
+  input.removeAttribute("readonly");
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const val = input.value.trim().toLowerCase();
+      if (val === "clear") {
+        body.innerHTML = `<p>System Online. Type <span style="color: var(--accent);">help</span> to view available commands.</p><p style="margin-top: 8px;"><span class="term-prompt">visitor@travis-baker:~$</span> <input type="text" class="term-input" placeholder="type 'help'..."><span class="cursor"></span></p>`;
+        initTerminal();
+        return;
+      }
+
+      const response = commands[val] || `Command not recognized: '${val}'. Type 'help' for options.`;
+      const output = document.createElement("p");
+      output.style.color = "#f8fafc";
+      output.style.margin = "4px 0 10px 0";
+      output.textContent = response;
+
+      body.insertBefore(output, input.parentElement);
+      input.value = "";
+    }
+  });
+}
