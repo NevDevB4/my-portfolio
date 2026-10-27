@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initThemeToggle();
   initTerminal();
-  initSmoothNav();
-  initFooterYear();
 });
 
 /* ------------------------------------------
@@ -112,14 +110,10 @@ function initScrollAnimations() {
   });
 
   window.addEventListener("scroll", () => {
-    if (scrollTopBtn) {
-      if (window.scrollY > 300) {
-        scrollTopBtn.classList.add("visible");
-        scrollTopBtn.style.display = "flex";
-      } else {
-        scrollTopBtn.classList.remove("visible");
-        scrollTopBtn.style.display = "none";
-      }
+    if (window.scrollY > 300) {
+      scrollTopBtn?.classList.add("visible");
+    } else {
+      scrollTopBtn?.classList.remove("visible");
     }
   });
 
@@ -135,22 +129,14 @@ function initThemeToggle() {
   const toggleBtn = document.getElementById("modeToggle");
   if (!toggleBtn) return;
 
-  if (localStorage.getItem("theme") === "light") {
-    document.body.classList.add("light");
-    document.body.setAttribute("data-theme", "light");
-    toggleBtn.textContent = "☀️";
-  }
-
   toggleBtn.addEventListener("click", () => {
-    const isLight = document.body.classList.toggle("light");
-    if (isLight) {
-      document.body.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-      toggleBtn.textContent = "☀️";
-    } else {
+    const currentTheme = document.body.getAttribute("data-theme");
+    if (currentTheme === "light") {
       document.body.removeAttribute("data-theme");
-      localStorage.setItem("theme", "dark");
       toggleBtn.textContent = "🌙";
+    } else {
+      document.body.setAttribute("data-theme", "light");
+      toggleBtn.textContent = "☀️";
     }
   });
 }
@@ -191,29 +177,4 @@ function initTerminal() {
       input.value = "";
     }
   });
-}
-
-/* ------------------------------------------
-   5. NAVIGATION & FOOTER UTILITIES
-   ------------------------------------------ */
-function initSmoothNav() {
-  document.querySelectorAll("nav a, #sidebar a").forEach(link => {
-    link.addEventListener("click", e => {
-      const href = link.getAttribute("href");
-      if (href && href.startsWith("#")) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    });
-  });
-}
-
-function initFooterYear() {
-  const yearElement = document.getElementById("year");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
 }
