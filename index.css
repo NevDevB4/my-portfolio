@@ -189,3 +189,67 @@ section.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+     /* ==========================================
+   UPSCALE GLASSMORPHISM & DEPTH EFFECTS
+   ========================================== */
+
+/* 1. Frosted Glass Cards with Multi-Layer Shadows & Specular Highlights */
+.about-card, 
+.project-card, 
+.category-card, 
+.badge-card,
+.terminal-window {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Specular top edge highlight */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* Upscale hover lift with neon accent bloom */
+.about-card:hover, 
+.project-card:hover, 
+.category-card:hover, 
+.badge-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    0 0 20px var(--accent-glow),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 2. Glassmorphic Sticky Navigation */
+nav {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. Glassmorphic Floating Sidebar */
+#sidebar {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* 4. Glassmorphic Mode Toggle & Scroll-to-Top */
+#modeToggle, #scrollTop {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
